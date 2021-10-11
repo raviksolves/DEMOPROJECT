@@ -1,0 +1,56 @@
+<apex:page controller="UserController">    
+    <apex:form >
+        <apex:selectList size="1" value="{!get_institute_id}" >
+            <apex:selectOptions value="{!UserList}"></apex:selectOptions>
+            <apex:actionSupport event="onchange"  />           
+        </apex:selectList>
+        <apex:outputPanel id="Abc" >
+            <table border="1">
+                <tr>
+                    <th>Mentor Name</th>
+                    <th>Designation</th>
+                </tr>
+                <apex:repeat value="{!relatedMentors}" var="Mentor">
+                    <tr>
+                        <td> 
+                            <apex:commandLink action="{!info_student}" value="{!Mentor.Name}">
+                                <apex:param name="get_Mentor_id" value="{!Mentor.Id}" assignTo="{!get_Mentor_id}"/>              
+                            </apex:commandLink>
+                        </td>
+                        <td>{!Mentor.Designation__c}</td>
+                    </tr>
+                    <apex:outputPanel rendered="{!IF(Mentor.Id=get_Mentor_id,true,false)}"  >
+                        <tr>
+                            <td colspan="2">
+                                <table border="1">
+                                    <tr>
+                                      <th>Student Name</th>
+                                      <th>Class</th>
+                                      <th>City</th>
+                                      <th>State</th>                             
+                                    </tr>
+                                    <apex:repeat value="{!relatedStudents}" var="info">                                    
+                                            <tr>
+                                              <td>
+                                                {!info.Name}
+                                              </td>
+                                              <td>
+                                                {!info.Class__c}
+                                              </td>
+                                              <td>
+                                                {!info.City__c}
+                                              </td>
+                                              <td>
+                                                {!info.State__c}
+                                              </td>
+                                            </tr>
+                                     </apex:repeat> 
+                                  </table>
+                              </td>
+                          </tr>
+                      </apex:outputPanel>
+                </apex:repeat>
+            </table>            
+        </apex:outputPanel>  
+    </apex:form>   
+</apex:page>

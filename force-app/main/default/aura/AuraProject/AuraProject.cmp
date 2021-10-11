@@ -1,0 +1,37 @@
+<aura:component controller="DynamicController"  >
+   <aura:attribute name="object" type="List" />
+   <aura:attribute name="getValue" type="String[]" />
+   <aura:attribute name="selectedObj" type="String"  />
+   <aura:handler name="init" value="{!this}" action="{!c.init }" />
+   <aura:attribute name="options" type="List"  />
+    <aura:attribute name="selectedlist" type="List" default="[]" />
+    <aura:attribute name="Query" type="String" />
+    <aura:attribute name="data" type="SObject[]" />
+    <aura:attribute name="columns" type="String[]" />
+    <aura:attribute name="Boolean" type="Boolean" default="true"/>
+   <lightning:select name="object_c" label="Object:" aura:id="objId" value="{!v.getValue}" onchange="{!c.handleChange}" >
+    <aura:iteration items="{!v.object}" var="element" >
+        <option value="{!element}" text="{!element}" /> 
+    </aura:iteration>
+   </lightning:select>
+        <lightning:dualListbox name="Fields"
+                           label= "Select Field"
+                           sourceLabel="Available" 
+                           selectedLabel="Selected"
+                           fieldLevelHelp="Select Your Preferred Field"
+                           options="{!v.options}"
+                           value="{!v.selectedlist}"
+                           onchange="{!c.getSelectedQuery}"/>
+    <lightning:textarea name="Query realted" label="Enter or modify a SOQL query below:" value="{!v.Query}" />
+    <lightning:button variant="success" label="Query Run" onclick="{!c.getResult}" />
+        
+        <div>  
+        <aura:if isTrue="{!v.Boolean}">
+        <lightning:datatable keyField="id"
+                             data="{!v.data}"
+                             columns="{!v.columns}"
+                             hideCheckboxColumn="true"
+                             />
+         </aura:if>
+       </div>
+</aura:component>
