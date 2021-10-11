@@ -12,6 +12,7 @@
    <lightning:select name="object_c" label="Object:" aura:id="objId" value="{!v.getValue}" onchange="{!c.handleChange}" >
     <aura:iteration items="{!v.object}" var="element" >
         <option value="{!element}" text="{!element}" /> 
+    <h1>Hi</h1>
     </aura:iteration>
    </lightning:select>
         <lightning:dualListbox name="Fields"
