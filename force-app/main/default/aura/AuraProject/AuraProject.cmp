@@ -12,7 +12,6 @@
    <lightning:select name="object_c" label="Object:" aura:id="objId" value="{!v.getValue}" onchange="{!c.handleChange}" >
     <aura:iteration items="{!v.object}" var="element" >
         <option value="{!element}" text="{!element}" /> 
-    <h1>Hi</h1>
     </aura:iteration>
    </lightning:select>
         <lightning:dualListbox name="Fields"
@@ -25,7 +24,6 @@
                            onchange="{!c.getSelectedQuery}"/>
     <lightning:textarea name="Query realted" label="Enter or modify a SOQL query below:" value="{!v.Query}" />
     <lightning:button variant="success" label="Query Run" onclick="{!c.getResult}" />
-        
         <div>  
         <aura:if isTrue="{!v.Boolean}">
         <lightning:datatable keyField="id"
