@@ -4,7 +4,6 @@
    <aura:attribute name="selectedObj" type="String"  />
    <aura:handler name="init" value="{!this}" action="{!c.init }" />
    <aura:attribute name="options" type="List"  />
-   <h1>hi</h1>
     <aura:attribute name="selectedlist" type="List" default="[]" />
     <aura:attribute name="Query" type="String" />
     <aura:attribute name="data" type="SObject[]" />
